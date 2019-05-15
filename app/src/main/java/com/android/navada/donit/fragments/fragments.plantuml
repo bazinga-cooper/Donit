@@ -1,0 +1,340 @@
+@startuml
+
+title __FRAGMENTS's Class Diagram__\n
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class AddEventFragment {
+          - eventNameEditText : EditText
+          - eventDescriptionEditText : EditText
+          - eventImageButton : ImageButton
+          - addEventButton : Button
+          - eventName : String
+          - eventDescription : String
+          - mStorageReference : StorageReference
+          - imageUri : Uri
+          {static} - PICK_IMAGE : int
+          - photoRef : StorageReference
+          - mProgressDialog : ProgressDialog
+          + AddEventFragment()
+          - initialize()
+          + onCreate()
+          + onCreateView()
+          + onResume()
+          + selectImage()
+          + addEvent()
+          + addToDatabase()
+          + makeToast()
+          + onActivityResult()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class AddRequirementFragment {
+          + AddRequirementFragment()
+          + onCreateView()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class DonateFragment {
+          + DonateFragment()
+          + onCreateView()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class DonationsFragment {
+          + DonationsFragment()
+          + onCreateView()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class FeedFragment {
+          + FeedFragment()
+          + onCreateView()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class HomeFragment {
+          - mBottomNavigationView : BottomNavigationView
+          - handler : Handler
+          {static} - DONATE_ID : int
+          {static} - FEED_ID : int
+          {static} - VALIDATE_ID : int
+          {static} - STORIES_ID : int
+          {static} - DONATIONS_ID : int
+          {static} - TAG_DONATE : String
+          {static} - TAG_FEED : String
+          {static} - TAG_VALIDATE : String
+          {static} - TAG_DONATIONS : String
+          {static} - TAG_STORIES : String
+          - CURRENT_TAG : String
+          - toolbar : Toolbar
+          - navItemId : int
+          + HomeFragment()
+          - initialize()
+          + onCreate()
+          + onCreateView()
+          + onViewCreated()
+          - setBottomNavBar()
+          - getFragment()
+          + onResume()
+          - loadFragment()
+          - setToolBarTitle()
+          + onNavigationItemSelected()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class MyDeliveriesFragment {
+          - query : Query
+          - deliveryCount : long
+          - readDeliveryCount : long
+          - progressBar : ProgressBar
+          - mRecyclerView : RecyclerView
+          - deliveries : List<DeliveryItem>
+          - deliveryIds : List<String>
+          - mImageUri : Uri
+          - mAlertDialog : AlertDialog
+          - mBuilder : Builder
+          - mDeliveryPhotoReference : StorageReference
+          - mChildEventListener : ChildEventListener
+          - mImageView : ImageView
+          - mProgressDialog : ProgressDialog
+          + MyDeliveriesFragment()
+          - initialize()
+          + onCreate()
+          + onCreateView()
+          + onResume()
+          + onPause()
+          - buildRecyclerView()
+          - attachListenerToRecyclerView()
+          - addImageToFireStorage()
+          - enableUserInteraction()
+          + onActivityResult()
+          - makeToast()
+          - sortList()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class MyDonationsFragment {
+          - query : Query
+          - mChildEventListener : ChildEventListener
+          - userDonationCount : long
+          - readCount : long
+          - progressBar : ProgressBar
+          - donations : List<DonationItem>
+          - donationsPushIds : List<String>
+          - mRecyclerView : RecyclerView
+          - mAlertDialog : AlertDialog
+          - mBuilder : Builder
+          + MyDonationsFragment()
+          - initialize()
+          + onCreate()
+          + onCreateView()
+          + onResume()
+          + onPause()
+          - enableUserInteraction()
+          - buildRecyclerView()
+          - attachListenerToRecyclerView()
+          - makeToast()
+          - sortList()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class OrgValidateFragment {
+          + OrgValidateFragment()
+          + onCreateView()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class ProfileFragment {
+          - nameTextView : TextView
+          - emailTextView : TextView
+          - mobileNumberTextView : TextView
+          - numberOfDonations : TextView
+          - numberOfDeliveries : TextView
+          - listTextView : TextView
+          - spinner : Spinner
+          - button : Button
+          - progressBar : ProgressBar
+          - linearLayout : LinearLayout
+          - doneReadingDonations : boolean
+          - doneReadingDeliveries : boolean
+          - doneReadingOrgs : boolean
+          - donationQuery : Query
+          - deliveryQuery : Query
+          - childEventListener : ChildEventListener
+          - deliveryListener : ChildEventListener
+          - readOrgCount : long
+          - orgCount : long
+          - deliveryCount : long
+          - readDeliveryCount : long
+          - deliveredCount : long
+          - orgQuery : Query
+          - orgList : List<CharSequence>
+          - user : HashMap<String, Object>
+          - userOrgs : HashMap<String, String>
+          - userOrgList : List<String>
+          - adapter : ArrayAdapter<String>
+          - listText : String
+          - initialize()
+          + ProfileFragment()
+          + onCreate()
+          + onCreateView()
+          + onViewCreated()
+          + onResume()
+          - buildSpinner()
+          + onPause()
+          - onClickSubmit()
+          - enableUserInteraction()
+          + makeToast()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class RequirementsFragment {
+          - listView : ListView
+          - progressBar : ProgressBar
+          - orgs : HashMap<String, String>
+          - orgList : ArrayList<String>
+          - query : Query
+          - childEventListener : ChildEventListener
+          - readOrgCount : long
+          - orgCount : long
+          - adapter : ArrayAdapter<String>
+          - initialize()
+          + RequirementsFragment()
+          + onCreate()
+          + onCreateView()
+          + onResume()
+          - enableUserInteraction()
+          - buildList()
+          + onPause()
+          + makeToast()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class StoriesFragment {
+          - recyclerView : RecyclerView
+          - progressBar : ProgressBar
+          - readEventCount : long
+          - readDeliveryCount : long
+          - eventCount : long
+          - deliveryCount : long
+          - deliveries : List<DeliveryItem>
+          - events : List<Event>
+          - stories : List<Story>
+          - deliveryQuery : Query
+          - eventDatabaseReference : DatabaseReference
+          - deliveryListener : ChildEventListener
+          - eventListener : ChildEventListener
+          - doneReadingDeliveries : boolean
+          - doneReadingEvents : boolean
+          - initialize()
+          + StoriesFragment()
+          + onCreate()
+          + onCreateView()
+          + onResume()
+          + onPause()
+          - enableUserInteraction()
+          - constructStories()
+          - sortList()
+          - buildRecyclerView()
+          - attachListenerToRecyclerView()
+          + makeToast()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class SuperAdminValidateFragment {
+          + SuperAdminValidateFragment()
+          + onCreateView()
+      }
+    }
+  }
+  
+
+  AddEventFragment -up-|> Fragment
+  SavedState -up-|> Parcelable
+  AddRequirementFragment -up-|> Fragment
+  SavedState -up-|> Parcelable
+  DonateFragment -up-|> Fragment
+  SavedState -up-|> Parcelable
+  DonationsFragment -up-|> Fragment
+  SavedState -up-|> Parcelable
+  FeedFragment -up-|> Fragment
+  SavedState -up-|> Parcelable
+  HomeFragment -up-|> OnNavigationItemSelectedListener
+  HomeFragment -up-|> Fragment
+  SavedState -up-|> Parcelable
+  MyDeliveriesFragment -up-|> Fragment
+  MyDeliveriesFragment o-- MyDeliveriesAdapter : mAdapter
+  SavedState -up-|> Parcelable
+  MyDonationsFragment -up-|> Fragment
+  MyDonationsFragment o-- MyDonationsAdapter : mAdapter
+  SavedState -up-|> Parcelable
+  OrgValidateFragment -up-|> Fragment
+  SavedState -up-|> Parcelable
+  ProfileFragment -up-|> Fragment
+  SavedState -up-|> Parcelable
+  RequirementsFragment -up-|> Fragment
+  SavedState -up-|> Parcelable
+  StoriesFragment -up-|> Fragment
+  StoriesFragment o-- StoriesAdapter : mAdapter
+  SavedState -up-|> Parcelable
+  SuperAdminValidateFragment -up-|> Fragment
+  SavedState -up-|> Parcelable
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

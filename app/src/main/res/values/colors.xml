@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <color name="colorPrimary">#2c964f</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="sienna">#882222</color>
+    <color name="white">#ffffff</color>
+    <color name="solidBlue">#0000ff</color>
+    <color name="stratos">#000045</color>
+    <color name="purple">#551a8b</color>
+    <color name="black">#000000</color>
+    <color name="cement">#bfbfbf</color>
+    <color name="dark_green">#043d04</color>
+    <color name="another_black">#4c4c4c</color>
+
+</resources>

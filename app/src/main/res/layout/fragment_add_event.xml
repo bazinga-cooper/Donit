@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".fragments.AddEventFragment">
+
+        <EditText
+            android:inputType="text"
+            android:id="@+id/event_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/event_name"
+            android:gravity="center"
+            android:layout_margin="15dp"
+            android:textAllCaps="true"
+            android:textSize="28sp"/>
+
+        <ImageButton
+            android:id="@+id/event_image"
+            android:layout_width="match_parent"
+            android:contentDescription="@string/event_image"
+            android:layout_height="200dp"
+            android:src="@drawable/add_image_click"
+            android:layout_margin="15dp"
+            android:scaleType="fitCenter" />
+
+        <EditText
+            android:inputType="textMultiLine"
+            android:id="@+id/event_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/event_description"
+            android:background="@drawable/edit_text_border"
+            android:padding="@dimen/margin_five_dp"
+            android:layout_margin="15dp"
+            android:textSize="20sp"
+            android:gravity="start"/>
+
+        <Button
+            style="?attr/borderlessButtonStyle"
+            android:id="@+id/add_event_button"
+            android:background="@drawable/button_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_event"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"/>
+
+</LinearLayout>

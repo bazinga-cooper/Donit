@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "884111081854",
+    "firebase_url": "https://donit-b723a.firebaseio.com",
+    "project_id": "donit-b723a",
+    "storage_bucket": "donit-b723a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884111081854:android:bf8c53e1b5699f6c",
+        "android_client_info": {
+          "package_name": "com.android.navada.donit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "884111081854-hc40jfoc41tilu22ac0nami09sh59qtu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.navada.donit",
+            "certificate_hash": "d6e9512ecfce2607092992cfa8c4d092d84c848c"
+          }
+        },
+        {
+          "client_id": "884111081854-i23eo8vauo75u9ii4m2m44qbnr5q4nps.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB75hiXJhdTNxJhCZFZYL8UsE8cU1ARFcE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "884111081854-i23eo8vauo75u9ii4m2m44qbnr5q4nps.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

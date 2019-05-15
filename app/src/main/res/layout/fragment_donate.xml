@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.DonateFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Item Name"
+        android:gravity="center_horizontal"
+        android:layout_margin="@dimen/margin_five_dp"/>
+    <EditText
+        android:id="@+id/item_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_margin="@dimen/margin_five_dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Item Description"
+        android:gravity="center_horizontal"
+        android:layout_margin="@dimen/margin_five_dp"/>
+    <EditText
+        android:id="@+id/item_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_margin="@dimen/margin_five_dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Item Type"
+        android:layout_margin="@dimen/margin_five_dp" />
+    <Spinner
+        android:id="@+id/item_type_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:entries="@array/Donation_Item_Types"
+        android:layout_margin="@dimen/margin_five_dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Item Image"
+        android:layout_margin="@dimen/margin_five_dp" />
+    <ImageButton
+        android:id="@+id/donation_image_button"
+        android:src="@drawable/add_image_click"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+        android:layout_width="180dp"
+        android:layout_height="200dp"
+        android:layout_margin="@dimen/margin_five_dp"/>
+    <TextView
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose Location On Map"
+        android:layout_margin="@dimen/margin_five_dp"/>
+    <ImageButton
+        android:id="@+id/location_button"
+        android:src="@drawable/ic_add_location"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_five_dp" />
+    <TextView
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"/>
+    <EditText
+        android:id="@+id/phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:layout_margin="@dimen/margin_five_dp"/>
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:background="#0000AA"
+        android:layout_margin="@dimen/margin_five_dp"/>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
+</LinearLayout>
+
+</FrameLayout>

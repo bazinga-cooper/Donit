@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/root_element_margin"
+    android:fillViewport="true"
+    android:scrollbarStyle="outsideOverlay"
+    tools:context=".activities.OrganisationSignUpActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:scrollbars="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_five_dp"
+            android:fontFamily="cursive"
+            android:text="@string/organization_form"
+            android:textAlignment="center"
+            android:textColor="@color/stratos"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_five_dp"
+            android:text="@string/name"
+            android:textAlignment="viewStart"
+            android:textColor="@color/sienna"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/enter_name"
+            android:inputType="textPersonName"
+            android:padding="@dimen/margin_five_dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_five_dp"
+            android:text="@string/email"
+            android:textAlignment="viewStart"
+            android:textColor="@color/sienna"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/enter_email"
+            android:inputType="textEmailAddress"
+            android:padding="5dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_five_dp"
+            android:text="@string/password"
+            android:textAlignment="viewStart"
+            android:textColor="@color/sienna"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/create_password"
+            android:inputType="textPassword"
+            android:padding="@dimen/margin_five_dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_five_dp"
+            android:text="@string/organization_type"
+            android:textAlignment="viewStart"
+            android:textColor="@color/sienna"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edit_text_border" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_five_dp"
+            android:text="@string/mobile_number"
+            android:textAlignment="viewStart"
+            android:textColor="@color/sienna"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/mobileNumberEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/enter_number"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:padding="5dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_five_dp"
+            android:text="@string/cause"
+            android:textAlignment="viewStart"
+            android:textColor="@color/sienna"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/causeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/enter_cause"
+            android:inputType="textMultiLine"
+            android:maxLength="10"
+            android:padding="5dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_five_dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:text="@string/address"
+                android:textColor="@color/sienna"
+                android:textSize="19sp" />
+
+            <ImageButton
+                android:id="@+id/location_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:src="@drawable/ic_location"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/addressEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_five_dp"
+            android:layout_marginRight="@dimen/margin_five_dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/edit_text_border"
+            android:hint="@string/locate"
+            android:inputType="textMultiLine"
+            android:maxLength="10"
+            android:padding="5dp" />
+
+        <Button
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_background"
+            android:onClick="onClickSubmitButton"
+            android:padding="3dp"
+            android:text="@string/submit"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</ScrollView>

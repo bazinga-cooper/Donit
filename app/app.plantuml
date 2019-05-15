@@ -1,0 +1,728 @@
+@startuml
+
+title __APP's Class Diagram__\n
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class AddEventFragment {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class AddRequirementFragment {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    class BuildConfig {
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.pojos {
+      class DeliveryItem {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class DonateFragment {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.pojos {
+      class DonationItem {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.adapters {
+      class DonationsAdapter {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class DonationsFragment {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class DonorSignUpActivity {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.pojos {
+      class Event {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    class ExampleInstrumentedTest {
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class FeedFragment {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.threads {
+      class GetOrganizationList {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.threads {
+      class GetUserData {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class HomeFragment {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class MainActivity {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.adapters {
+      class MyDeliveriesAdapter {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class MyDeliveriesFragment {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.adapters {
+      class MyDonationsAdapter {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class MyDonationsFragment {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class OrgValidateFragment {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class OrganisationSignUpActivity {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.pojos {
+      class Organization {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class OrganizationRequirementActivity {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class ProfileFragment {
+      }
+    }
+  }
+  
+
+  package android.support.customview {
+    class R {
+    }
+  }
+  
+
+  package com.google.android.gms.flags {
+    class R {
+    }
+  }
+  
+
+  package android.support.loader {
+    class R {
+    }
+  }
+  
+
+  package androidx.versionedparcelable {
+    class R {
+    }
+  }
+  
+
+  package android.support.v7.appcompat {
+    class R {
+    }
+  }
+  
+
+  package android.support.drawerlayout {
+    class R {
+    }
+  }
+  
+
+  package com.google.android.gms.ads_identifier {
+    class R {
+    }
+  }
+  
+
+  package com.google.android.gms.base {
+    class R {
+    }
+  }
+  
+
+  package android.support.mediacompat {
+    class R {
+    }
+  }
+  
+
+  package android.support.coreui {
+    class R {
+    }
+  }
+  
+
+  package com.google.android.gms.common {
+    class R {
+    }
+  }
+  
+
+  package android.support.fragment {
+    class R {
+    }
+  }
+  
+
+  package com.google.android.gms.stats {
+    class R {
+    }
+  }
+  
+
+  package android.arch.lifecycle {
+    package android.arch.lifecycle.viewmodel {
+      class R {
+      }
+    }
+  }
+  
+
+  package android.support.v7.viewpager {
+    class R {
+    }
+  }
+  
+
+  package android.support.print {
+    class R {
+    }
+  }
+  
+
+  package com.google.firebase {
+    package com.google.firebase.database {
+      class R {
+      }
+    }
+  }
+  
+
+  package android.support.coreutils {
+    class R {
+    }
+  }
+  
+
+  package android.support.cursoradapter {
+    class R {
+    }
+  }
+  
+
+  package android.support.constraint {
+    class R {
+    }
+  }
+  
+
+  package android.support.design {
+    class R {
+    }
+  }
+  
+
+  package com.google.firebase {
+    package com.google.firebase.firebase_core {
+      class R {
+      }
+    }
+  }
+  
+
+  package android.support.swiperefreshlayout {
+    class R {
+    }
+  }
+  
+
+  package android.support.v7.recyclerview {
+    class R {
+    }
+  }
+  
+
+  package com.google.firebase {
+    package com.google.firebase.measurement {
+      class R {
+      }
+    }
+  }
+  
+
+  package android.support.documentfile {
+    class R {
+    }
+  }
+  
+
+  package com.google.android.gms.measurement.api {
+    class R {
+    }
+  }
+  
+
+  package android.support.v4 {
+    class R {
+    }
+  }
+  
+
+  package android.support.exifinterface {
+    class R {
+    }
+  }
+  
+
+  package com.google.firebase {
+    package com.google.firebase.storage {
+      class R {
+      }
+    }
+  }
+  
+
+  package android.support.graphics.drawable {
+    class R {
+    }
+  }
+  
+
+  package com.google.firebase {
+    package com.google.firebase.auth {
+      class R {
+      }
+    }
+  }
+  
+
+  package android.support.interpolator {
+    class R {
+    }
+  }
+  
+
+  package com.google.firebase {
+    package com.google.firebase.database {
+      package com.google.firebase.database.collection {
+        class R {
+        }
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    class R {
+    }
+  }
+  
+
+  package android.support.compat {
+    class R {
+    }
+  }
+  
+
+  package com.google.android.gms.tasks {
+    class R {
+    }
+  }
+  
+
+  package android.support.v7.cardview {
+    class R {
+    }
+  }
+  
+
+  package com.google.android.gms.measurement_base {
+    class R {
+    }
+  }
+  
+
+  package com.google.firebase {
+    package com.google.firebase.iid {
+      class R {
+      }
+    }
+  }
+  
+
+  package com.google.firebase {
+    package com.google.firebase.iid {
+      package com.google.firebase.iid.internal {
+        class R {
+        }
+      }
+    }
+  }
+  
+
+  package android.support.slidingpanelayout {
+    class R {
+    }
+  }
+  
+
+  package com.squareup.picasso {
+    class R {
+    }
+  }
+  
+
+  package com.google.firebase {
+    package com.google.firebase.firebase_analytics {
+      class R {
+      }
+    }
+  }
+  
+
+  package android.support.localbroadcastmanager {
+    class R {
+    }
+  }
+  
+
+  package com.google.firebase {
+    class R {
+    }
+  }
+  
+
+  package android.arch.lifecycle {
+    package android.arch.lifecycle.livedata {
+      package android.arch.lifecycle.livedata.core {
+        class R {
+        }
+      }
+    }
+  }
+  
+
+  package android.support.transition {
+    class R {
+    }
+  }
+  
+
+  package com.google.android.gms.measurement.sdk {
+    class R {
+    }
+  }
+  
+
+  package com.google.firebase {
+    package com.google.firebase.measurement {
+      package com.google.firebase.measurement_impl {
+        class R {
+        }
+      }
+    }
+  }
+  
+
+  package android.arch.lifecycle {
+    class R {
+    }
+  }
+  
+
+  package com.google.android.gms.measurement.sdk {
+    package com.google.android.gms.measurement.sdk.api {
+      class R {
+      }
+    }
+  }
+  
+
+  package com.google.firebase {
+    package com.google.firebase.auth {
+      package com.google.firebase.auth.internal {
+        class R {
+        }
+      }
+    }
+  }
+  
+
+  package com.google.firebase {
+    package com.google.firebase.analytics.connector {
+      class R {
+      }
+    }
+  }
+  
+
+  package android.support.coordinatorlayout {
+    class R {
+    }
+  }
+  
+
+  package android.support.asynclayoutinflater {
+    class R {
+    }
+  }
+  
+
+  package android.arch.core {
+    class R {
+    }
+  }
+  
+
+  package android.arch.lifecycle {
+    package android.arch.lifecycle.livedata {
+      class R {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.adapters {
+      class RequirementsAdapter {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class RequirementsFragment {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class ResetPasswordActivity {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class SignInActivity {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.threads {
+      class SignInThread {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.adapters {
+      class StoriesAdapter {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class StoriesFragment {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.pojos {
+      class Story {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.fragments {
+      class SuperAdminValidateFragment {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.pojos {
+      class User {
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class VerificationActivity {
+      }
+    }
+  }
+  
+
+  AddEventFragment -up-|> Fragment
+  AddRequirementFragment -up-|> Fragment
+  DonateFragment -up-|> Fragment
+  DonationsAdapter -up-|> Adapter
+  DonationsFragment -up-|> Fragment
+  DonorSignUpActivity -up-|> AppCompatActivity
+  FeedFragment -up-|> Fragment
+  GetOrganizationList o-- DonorSignUpActivity : activity
+  GetUserData o-- MainActivity : activity
+  HomeFragment -up-|> OnNavigationItemSelectedListener
+  HomeFragment -up-|> Fragment
+  MainActivity -up-|> OnNavigationItemSelectedListener
+  MainActivity -up-|> AppCompatActivity
+  MyDeliveriesAdapter -up-|> Adapter
+  MyDeliveriesAdapter o-- OnClickListener : mListener
+  MyDeliveriesFragment -up-|> Fragment
+  MyDeliveriesFragment o-- MyDeliveriesAdapter : mAdapter
+  MyDonationsAdapter -up-|> Adapter
+  MyDonationsAdapter o-- OnClickListener : mListener
+  MyDonationsFragment -up-|> Fragment
+  MyDonationsFragment o-- MyDonationsAdapter : mAdapter
+  OrgValidateFragment -up-|> Fragment
+  OrganisationSignUpActivity -up-|> OnClickListener
+  OrganisationSignUpActivity -up-|> AppCompatActivity
+  OrganizationRequirementActivity -up-|> AppCompatActivity
+  ProfileFragment -up-|> Fragment
+  RequirementsAdapter -up-|> Adapter
+  RequirementsFragment -up-|> Fragment
+  ResetPasswordActivity -up-|> AppCompatActivity
+  SignInActivity -up-|> OnClickListener
+  SignInActivity -up-|> AppCompatActivity
+  SignInThread o-- SignInActivity : activity
+  StoriesAdapter -up-|> Adapter
+  StoriesAdapter o-- OnClickListener : mListener
+  StoriesFragment -up-|> Fragment
+  StoriesFragment o-- StoriesAdapter : mAdapter
+  SuperAdminValidateFragment -up-|> Fragment
+  VerificationActivity -up-|> AppCompatActivity
+  VerificationActivity o-- User : user
+  VerificationActivity o-- Organization : organization
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

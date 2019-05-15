@@ -1,0 +1,245 @@
+@startuml
+
+title __ACTIVITIES's Class Diagram__\n
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class DonorSignUpActivity {
+          - nameEditText : EditText
+          - emailEditText : EditText
+          - passwordEditText : EditText
+          - mobileNumberEditText : EditText
+          - mCallbacks : OnVerificationStateChangedCallbacks
+          + mProgressDialog : ProgressDialog
+          {static} + token : ForceResendingToken
+          - name : String
+          - email : String
+          - password : String
+          - mobileNumber : String
+          - city : String
+          - organization : String
+          - citySpinner : Spinner
+          + organizationSpinner : Spinner
+          # onCreate()
+          - initialize()
+          - askUserToEnterCode()
+          + onConfigurationChanged()
+          - makeToast()
+          + onClickSubmitButton()
+          # onResume()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class MainActivity {
+          - mDrawerLayout : DrawerLayout
+          - mNavigationView : NavigationView
+          - mNavHeaderUserName : TextView
+          - mNavHeaderUserEmail : TextView
+          {static} - TAG_HOME : String
+          {static} - TAG_PROFILE : String
+          {static} - TAG_MY_DONATIONS : String
+          {static} - TAG_MY_DELIVERIES : String
+          {static} - TAG_ADD_EVENT : String
+          {static} - TAG_ADD_REQUIREMENT : String
+          {static} - TAG_REQUIREMENT : String
+          - mAuth : FirebaseAuth
+          {static} - HOME_ID : int
+          {static} - PROFILE_ID : int
+          {static} - MY_DONATIONS_ID : int
+          {static} - MY_DELIVERIES_ID : int
+          {static} - ADD_EVENT_ID : int
+          {static} - ADD_REQUIREMENT_ID : int
+          {static} - REQUIREMENTS_ID : int
+          - CURRENT_TAG : String
+          - navItemId : int
+          ~ handler : Handler
+          {static} + userType : String
+          + progressDialog : ProgressDialog
+          {static} + user : HashMap<String, Object>
+          - exitBuilder : Builder
+          # onCreate()
+          - initialize()
+          # onResume()
+          - checkIfDone()
+          - makeToast()
+          + onCreateOptionsMenu()
+          + onOptionsItemSelected()
+          - addNavMenuItems()
+          + onBackPressed()
+          - getFragment()
+          - setToolBarTitle()
+          - loadFragment()
+          + onNavigationItemSelected()
+          + onConfigurationChanged()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class OrganisationSignUpActivity {
+          - nameEditText : EditText
+          - emailEditText : EditText
+          - passwordEditText : EditText
+          - mobileNumberEditText : EditText
+          - spinner : Spinner
+          - causeEditText : EditText
+          - addressEditText : EditText
+          - intent : Intent
+          - mCallbacks : OnVerificationStateChangedCallbacks
+          {static} + token : ForceResendingToken
+          + mProgressDialog : ProgressDialog
+          - name : String
+          - email : String
+          - password : String
+          - mobileNumber : String
+          - cause : String
+          - type : String
+          {static} + address : String
+          {static} + city : String
+          # onCreate()
+          - initialize()
+          - askUserToEnterCode()
+          - makeToast()
+          + onConfigurationChanged()
+          + onClickSubmitButton()
+          + onClick()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class OrganizationRequirementActivity {
+          - listView : ListView
+          - progressBar : ProgressBar
+          - query : Query
+          - readRequirementCount : long
+          - requirementCount : long
+          - requirements : List<String>
+          - adapter : ArrayAdapter<String>
+          - childEventListener : ChildEventListener
+          - initialize()
+          # onCreate()
+          # onResume()
+          # onPause()
+          - enableUserInteraction()
+          + makeToast()
+          + onConfigurationChanged()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class ResetPasswordActivity {
+          - emailEditText : EditText
+          # onCreate()
+          + onConfigurationChanged()
+          - makeToast()
+          + onClickResetPassword()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class SignInActivity {
+          - emailEditText : EditText
+          - passwordEditText : EditText
+          - forgotPasswordTextView : TextView
+          {static} + rememberMeCheckBox : CheckBox
+          - intent : Intent
+          + progressDialog : ProgressDialog
+          - sharedPreferences : SharedPreferences
+          - mAuth : FirebaseAuth
+          - authStateListener : AuthStateListener
+          - email : String
+          - password : String
+          # onCreate()
+          # onResume()
+          - initialize()
+          - checkIfUserIsOrganization()
+          - startMainActivity()
+          - attachListeners()
+          + onClickSignInButton()
+          + onClickDonorSignUpButton()
+          + onClickOrganisationSignUpButton()
+          - makeToast()
+          # onPause()
+          + onConfigurationChanged()
+          + onClick()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.activities {
+      class VerificationActivity {
+          - timerTextView : TextView
+          - verificationCodeEditText : EditText
+          - mProgressDialog : ProgressDialog
+          - mCountDownTimer : CountDownTimer
+          - token : ForceResendingToken
+          - mCallbacks : OnVerificationStateChangedCallbacks
+          - left : long
+          - verificationId : String
+          - mobileNumber : String
+          - email : String
+          - password : String
+          # onCreate()
+          - getData()
+          - initialize()
+          - getCountDownTimer()
+          # onDestroy()
+          - startTimer()
+          + onConfigurationChanged()
+          - makeToast()
+          + onClickVerifyButton()
+          - deleteUser()
+          - signUpWithEmail()
+          - pushUserData()
+          + onClickResendCode()
+      }
+    }
+  }
+  
+
+  DonorSignUpActivity -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  MainActivity -up-|> OnNavigationItemSelectedListener
+  MainActivity -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  OrganisationSignUpActivity -up-|> OnClickListener
+  OrganisationSignUpActivity -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  OrganizationRequirementActivity -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  ResetPasswordActivity -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  SignInActivity -up-|> OnClickListener
+  SignInActivity -up-|> AppCompatActivity
+  HostCallbacks -up-|> FragmentHostCallback
+  VerificationActivity -up-|> AppCompatActivity
+  VerificationActivity o-- User : user
+  VerificationActivity o-- Organization : organization
+  HostCallbacks -up-|> FragmentHostCallback
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

@@ -1,0 +1,223 @@
+@startuml
+
+title __POJOS's Class Diagram__\n
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.pojos {
+      class DeliveryItem {
+          - status : String
+          - timeStamp : String
+          - donationId : String
+          - donorName : String
+          - donorContactNumber : String
+          - sourceAddress : String
+          - destinationAddess : String
+          - donationImageURL : String
+          - deliveryImageURL : String
+          - delivererId : String
+          - delivererName : String
+          - orgName : String
+          + DeliveryItem()
+          + DeliveryItem()
+          + getStatus()
+          + getTimeStamp()
+          + getDonationId()
+          + getDonorName()
+          + getDonorContactNumber()
+          + getSourceAddress()
+          + getDestinationAddess()
+          + getDonationImageURL()
+          + getDeliveryImageURL()
+          + getDelivererId()
+          + getDelivererName()
+          + getOrgName()
+          + setStatus()
+          + setTimeStamp()
+          + setDonationId()
+          + setDonorName()
+          + setDonorContactNumber()
+          + setSourceAddress()
+          + setDestinationAddess()
+          + setDonationImageURL()
+          + setDeliveryImageURL()
+          + setDelivererId()
+          + setDelivererName()
+          + setOrgName()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.pojos {
+      class DonationItem {
+          - description : String
+          - donationImageUrl : String
+          - deliveryImageUrl : String
+          - category : String
+          - address : String
+          - city : String
+          - status : String
+          - timeStamp : String
+          - donorName : String
+          - donorId : String
+          - donorContactNumber : String
+          - delivereName : String
+          - delivererContactNumber : String
+          - deliveredDate : String
+          + DonationItem()
+          + DonationItem()
+          + getDescription()
+          + getDonationImageUrl()
+          + getDeliveryImageUrl()
+          + getCategory()
+          + getAddress()
+          + getCity()
+          + getStatus()
+          + getTimeStamp()
+          + getDonorName()
+          + getDonorId()
+          + getDonorContactNumber()
+          + getDelivereName()
+          + getDelivererContactNumber()
+          + getDeliveredDate()
+          + setDescription()
+          + setDonationImageUrl()
+          + setDeliveryImageUrl()
+          + setCategory()
+          + setAddress()
+          + setCity()
+          + setStatus()
+          + setTimeStamp()
+          + setDonorName()
+          + setDonorId()
+          + setDonorContactNumber()
+          + setDelivereName()
+          + setDelivererContactNumber()
+          + setDeliveredDate()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.pojos {
+      class Event {
+          - name : String
+          - description : String
+          - imageURL : String
+          - timeStamp : Long
+          - organization : String
+          + Event()
+          + Event()
+          + getName()
+          + getDescription()
+          + getImageURL()
+          + getTimeStamp()
+          + getOrganization()
+          + setName()
+          + setDescription()
+          + setImageURL()
+          + setTimeStamp()
+          + setOrganization()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.pojos {
+      class Organization {
+          - name : String
+          - email : String
+          - mobileNumber : String
+          - type : String
+          - city : String
+          - address : String
+          - cause : String
+          - typeOfUser : String
+          - approved : boolean
+          + Organization()
+          + Organization()
+          + getName()
+          + getEmail()
+          + getMobileNumber()
+          + getType()
+          + getCity()
+          + getAddress()
+          + getCause()
+          + getTypeOfUser()
+          + isApproved()
+          + setName()
+          + setEmail()
+          + setMobileNumber()
+          + setType()
+          + setCity()
+          + setAddress()
+          + setCause()
+          + setTypeOfUser()
+          + setApproved()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.pojos {
+      class Story {
+          - addedBy : String
+          - mainContent : String
+          - imageURL : String
+          - timeStamp : String
+          + Story()
+          + getAddedBy()
+          + getMainContent()
+          + getImageURL()
+          + getTimeStamp()
+          + setAddedBy()
+          + setMainContent()
+          + setImageURL()
+          + setTimeStamp()
+      }
+    }
+  }
+  
+
+  package com.android.navada.donit {
+    package com.android.navada.donit.pojos {
+      class User {
+          - name : String
+          - email : String
+          - mobileNumber : String
+          - city : String
+          - typeOfUser : String
+          - orgs : HashMap<String, String>
+          + User()
+          + User()
+          + getName()
+          + getEmail()
+          + getMobileNumber()
+          + getCity()
+          + getTypeOfUser()
+          + getOrgs()
+          + setName()
+          + setEmail()
+          + setMobileNumber()
+          + setCity()
+          + setTypeOfUser()
+          + setOrgs()
+      }
+    }
+  }
+  
+
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
