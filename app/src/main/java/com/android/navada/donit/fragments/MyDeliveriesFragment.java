@@ -346,7 +346,7 @@ public class MyDeliveriesFragment extends Fragment {
                     Uri downloadUri = task.getResult();
                     String imageUrl = downloadUri.toString();
                     FirebaseDatabase.getInstance().getReference().child("Deliveries").child(deliveryIds.get(position)).child("deliveryImageUrl").setValue(imageUrl);
-                    FirebaseDatabase.getInstance().getReference().child("Donations").child(deliveries.get(position).getDonationId()).setValue(imageUrl);
+                    FirebaseDatabase.getInstance().getReference().child("Donations").child(deliveries.get(position).getDonationId()).child("deliveryImageUrl").setValue(imageUrl);
 
                     DeliveryItem deliveryItem = deliveries.get(position);
                     Long timeStamp = System.currentTimeMillis() / 1000;

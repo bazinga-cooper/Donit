@@ -10,7 +10,7 @@ public class DeliveryItem {
     private String sourceAddress;
     private String destinationAddess;
     private String donationImageURL;
-    private String deliveryImageURL;
+    private String deliveryImageUrl;
     private String delivererId;
     private String delivererName;
     private String orgName;
@@ -28,7 +28,7 @@ public class DeliveryItem {
         this.sourceAddress = sourceAddress;
         this.destinationAddess = destinationAddess;
         this.donationImageURL = donationImageURL;
-        this.deliveryImageURL = deliveryImageURL;
+        this.deliveryImageUrl = deliveryImageURL;
         this.delivererId = delivererId;
         this.delivererName = delivererName;
         this.orgName = orgName;
@@ -67,7 +67,7 @@ public class DeliveryItem {
     }
 
     public String getDeliveryImageURL() {
-        return deliveryImageURL;
+        return deliveryImageUrl;
     }
 
     public String getDelivererId() {
@@ -115,7 +115,7 @@ public class DeliveryItem {
     }
 
     public void setDeliveryImageURL(String deliveryImageURL) {
-        this.deliveryImageURL = deliveryImageURL;
+        this.deliveryImageUrl = deliveryImageURL;
     }
 
     public void setDelivererId(String delivererId) {
