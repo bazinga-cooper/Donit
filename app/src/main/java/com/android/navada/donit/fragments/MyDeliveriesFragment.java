@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.android.navada.donit.R;
+import com.android.navada.donit.activities.EnlargeImageActivity;
 import com.android.navada.donit.adapters.MyDeliveriesAdapter;
 import com.android.navada.donit.pojos.DeliveryItem;
 import com.android.navada.donit.pojos.Story;
@@ -304,7 +305,9 @@ public class MyDeliveriesFragment extends Fragment {
 
             @Override
             public void onClickImage(ImageView view, int position) {
-
+                    Intent intent = new Intent(getContext(), EnlargeImageActivity.class);
+                    intent.putExtra("ImageUrl",deliveries.get(position).getDeliveryImageURL());
+                    startActivity(intent);
             }
         });
 

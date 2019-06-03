@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.android.navada.donit.R;
+import com.android.navada.donit.pojos.Organization;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -34,7 +35,7 @@ import java.util.Locale;
 public class OrganizationLocationActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
 
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
-    private static final String COARSE_LOACTION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private Boolean mLocationPermissionGranted = false;
     private static final int LOCATION_PERMISSION_REQUEST = 1234;
     private GoogleMap mMap;
@@ -42,7 +43,7 @@ public class OrganizationLocationActivity extends AppCompatActivity implements O
     private static final float DEFAULT_ZOOM = 20;
     private boolean mMarkerAdded = false;
     private Button mLocationSubmitButton;
-    private String state,city, address,pinCode;
+    private String mState, mCity, mAddress, mPinCode;
     private LatLng mChoosenLatLng;
 
 
@@ -53,8 +54,6 @@ public class OrganizationLocationActivity extends AppCompatActivity implements O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donation_location);
-
-        getLocationPermission();
         mLocationSubmitButton = findViewById(R.id.submitLocationBotton);
     }
 
@@ -67,6 +66,7 @@ public class OrganizationLocationActivity extends AppCompatActivity implements O
              onSubmitLocation();
             }
         });
+        getLocationPermission();
     }
 
     private void getLocationPermission() {
@@ -75,12 +75,15 @@ public class OrganizationLocationActivity extends AppCompatActivity implements O
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
-                    COARSE_LOACTION) == PackageManager.PERMISSION_GRANTED) {
+                    COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 mLocationPermissionGranted = true;
                 initMap();
             } else {
                 ActivityCompat.requestPermissions(this, permissions, LOCATION_PERMISSION_REQUEST);
             }
+        }
+        else {
+            ActivityCompat.requestPermissions(this, permissions, LOCATION_PERMISSION_REQUEST);
         }
     }
 
@@ -116,24 +119,24 @@ public class OrganizationLocationActivity extends AppCompatActivity implements O
         try {
             List<Address> mListAddress = mgeocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
             if(mListAddress != null && mListAddress.size() > 0){
-                address = "";
-                city = "";
-                state = "";
-                pinCode = "";
+                mAddress = "";
+                mCity = "";
+                mState = "";
+                mPinCode = "";
                 if(mListAddress.get(0).getThoroughfare() != null){
-                    address += mListAddress.get(0).getThoroughfare().toString() + " ";
+                    mAddress += mListAddress.get(0).getThoroughfare().toString() + " ";
                 }
                 if(mListAddress.get(0).getSubAdminArea() != null){
-                    address += mListAddress.get(0).getSubAdminArea().toString() + " ";
+                    mAddress += mListAddress.get(0).getSubAdminArea().toString() + " ";
                 }
                 if(mListAddress.get(0).getLocality() != null){
-                    city += mListAddress.get(0).getLocality().toString();
+                    mCity += mListAddress.get(0).getLocality().toString();
                 }
                 if(mListAddress.get(0).getAdminArea() != null) {
-                    state += mListAddress.get(0).getAdminArea().toString();
+                    mState += mListAddress.get(0).getAdminArea().toString();
                 }
                 if(mListAddress.get(0).getPostalCode() != null){
-                    pinCode += mListAddress.get(0).getPostalCode().toString();
+                    mPinCode += mListAddress.get(0).getPostalCode().toString();
                 }
             }
         } catch (IOException e) {
@@ -144,8 +147,9 @@ public class OrganizationLocationActivity extends AppCompatActivity implements O
 
     public void onSubmitLocation(){
         if(mMarkerAdded){
-            OrganisationSignUpActivity.city = city;
-            OrganisationSignUpActivity.address = address;
+            OrganisationSignUpActivity.addressEditText.setText(mCity);
+            OrganisationSignUpActivity.city = mCity;
+            OrganisationSignUpActivity.address = mAddress;
             OrganisationSignUpActivity.latitude = mChoosenLatLng.latitude;
             OrganisationSignUpActivity.longitude = mChoosenLatLng.longitude;
             onBackPressed();
@@ -168,7 +172,7 @@ public class OrganizationLocationActivity extends AppCompatActivity implements O
                 location.addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {
-                        if (task.isSuccessful()) {
+                        if (task.isSuccessful() && task.getResult()!=null) {
                             Location currentLocation = (Location) task.getResult();
                             moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
                         } else {

@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,6 @@ public class OrgValidateFragment extends Fragment {
         childEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
                 User user = dataSnapshot.getValue(User.class);
                 HashMap<String, String> orgs = user.getOrgs();
                 if(orgs != null)
@@ -150,6 +150,7 @@ public class OrgValidateFragment extends Fragment {
                 volunteers = new ArrayList<>();
                 userIds = new ArrayList<>();
                 volunteerCount = dataSnapshot.getChildrenCount();
+
                 if(volunteerCount == 0)
                     enableUserInteraction();
                 else

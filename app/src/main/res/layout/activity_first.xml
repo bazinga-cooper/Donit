@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/splash1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:alpha="100"
+    android:background="@drawable/bck"
+    android:visibility="visible">
+
+    <ImageView
+        android:id="@+id/donit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:alpha="0"
+        android:paddingLeft="@dimen/margin_five_dp"
+        android:paddingRight="@dimen/margin_five_dp"
+        android:src="@drawable/donit" />
+
+
+</RelativeLayout>

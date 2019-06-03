@@ -18,10 +18,8 @@ public class DonationItem {
     private String delivereName;
     private String delivererContactNumber;
     private String deliveredDate;
-    private String orgLat,orgLng;
+    private double orgLat,orgLng;
     private String deliveryAddress;
-
-
     private String chosenOrganizationId="";
     private HashMap<String,Object> donorAddress;
 
@@ -104,13 +102,9 @@ public class DonationItem {
         this.description = description;
     }
 
-    public void setDonationImageUrl(String donationImageUrl) {
-        this.donationImageUrl = donationImageUrl;
-    }
+    public void setDonationImageUrl(String donationImageUrl) { this.donationImageUrl = donationImageUrl; }
 
-    public void setDeliveryImageUrl(String deliveryImageUrl) {
-        this.deliveryImageUrl = deliveryImageUrl;
-    }
+    public void setDeliveryImageUrl(String deliveryImageUrl) { this.deliveryImageUrl = deliveryImageUrl; }
 
     public void setCategory(String category) {
         this.category = category;
@@ -140,17 +134,13 @@ public class DonationItem {
         this.donorId = donorId;
     }
 
-    public void setDonorContactNumber(String donorContactNumber) {
-        this.donorContactNumber = donorContactNumber;
-    }
+    public void setDonorContactNumber(String donorContactNumber) { this.donorContactNumber = donorContactNumber; }
 
     public void setDelivereName(String delivereName) {
         this.delivereName = delivereName;
     }
 
-    public void setDelivererContactNumber(String delivererContactNumber) {
-        this.delivererContactNumber = delivererContactNumber;
-    }
+    public void setDelivererContactNumber(String delivererContactNumber) { this.delivererContactNumber = delivererContactNumber; }
 
     public void setDeliveredDate(String deliveredDate) {
         this.deliveredDate = deliveredDate;
@@ -160,31 +150,27 @@ public class DonationItem {
         return chosenOrganizationId;
     }
 
-    public void setChosenOrganizationId(String chosenOrganizationId) {
-        this.chosenOrganizationId = chosenOrganizationId;
-    }
+    public void setChosenOrganizationId(String chosenOrganizationId) { this.chosenOrganizationId = chosenOrganizationId; }
 
     public HashMap<String, Object> getDonorAddress() {
         return donorAddress;
     }
 
-    public void setDonorAddress(HashMap<String, Object> donorAddress) {
-        this.donorAddress = donorAddress;
-    }
+    public void setDonorAddress(HashMap<String, Object> donorAddress) { this.donorAddress = donorAddress; }
 
-    public String getOrgLat() {
+    public double getOrgLat() {
         return orgLat;
     }
 
-    public void setOrgLat(String orgLat) {
+    public void setOrgLat(double orgLat) {
         this.orgLat = orgLat;
     }
 
-    public String getOrgLng() {
+    public double getOrgLng() {
         return orgLng;
     }
 
-    public void setOrgLng(String orgLng) {
+    public void setOrgLng(double orgLng) {
         this.orgLng = orgLng;
     }
 
@@ -192,7 +178,5 @@ public class DonationItem {
         return deliveryAddress;
     }
 
-    public void setDeliveryAddress(String deliveryAddress) {
-        this.deliveryAddress = deliveryAddress;
-    }
+    public void setDeliveryAddress(String deliveryAddress) { this.deliveryAddress = deliveryAddress; }
 }

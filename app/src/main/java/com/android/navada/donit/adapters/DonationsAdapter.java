@@ -14,12 +14,12 @@ import java.util.List;
 
 public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.DonationViewHolder> {
 
-    private List<DonationItem> donations;
+    private List<DonationItem> mDonations;
     private OnClickListener mListener;
 
     public DonationsAdapter(List<DonationItem> donations){
 
-        this.donations = donations;
+        mDonations = donations;
 
     }
 
@@ -37,17 +37,17 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.Dona
 
     static class DonationViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView descriptionTextView;
-        private ImageView donationImageView;
-        private TextView itemType,donationAddress;
+        private TextView mDescriptionTextView;
+        private ImageView mDonationImageView;
+        private TextView mItemType, mDonationAddress;
 
         DonationViewHolder(View view, final OnClickListener listener){
 
             super(view);
-            descriptionTextView = view.findViewById(R.id.description);
-            donationImageView = view.findViewById(R.id.donation_image);
-            itemType = view.findViewById(R.id.item_type);
-            donationAddress = view.findViewById(R.id.donation_address);
+            mDescriptionTextView = view.findViewById(R.id.description);
+            mDonationImageView = view.findViewById(R.id.donation_image);
+            mItemType = view.findViewById(R.id.item_type);
+            mDonationAddress = view.findViewById(R.id.donation_address);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -76,23 +76,23 @@ public class DonationsAdapter extends RecyclerView.Adapter<DonationsAdapter.Dona
     @Override
     public void onBindViewHolder(@NonNull DonationViewHolder viewHolder, int i) {
 
-        DonationItem donationItem = donations.get(i);
+        DonationItem donationItem = mDonations.get(i);
 
-        viewHolder.descriptionTextView.setText(donationItem.getDescription());
-        viewHolder.donationAddress.setText(donationItem.getAddress());
-        viewHolder.itemType.setText(donationItem.getCategory());
+        viewHolder.mDescriptionTextView.setText(donationItem.getDescription());
+        viewHolder.mDonationAddress.setText(donationItem.getAddress());
+        viewHolder.mItemType.setText(donationItem.getCategory());
         String donationImageUrl = donationItem.getDonationImageUrl();
 
         if(donationImageUrl != null)
-            Picasso.get().load(donationImageUrl).into(viewHolder.donationImageView);
+            Picasso.get().load(donationImageUrl).into(viewHolder.mDonationImageView);
         else
-            viewHolder.donationImageView.setImageResource(R.drawable.no_image);
+            viewHolder.mDonationImageView.setImageResource(R.drawable.no_image);
 
     }
 
     @Override
     public int getItemCount() {
-        return donations.size();
+        return mDonations.size();
     }
 
 }

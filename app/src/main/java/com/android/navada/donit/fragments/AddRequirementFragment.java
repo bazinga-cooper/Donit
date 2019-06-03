@@ -3,7 +3,6 @@ package com.android.navada.donit.fragments;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -30,11 +29,11 @@ import java.util.ArrayList;
 
 public class AddRequirementFragment extends Fragment{
 
-    private ListView addReqListView;
+    private ListView mAddReqListView;
     public static ArrayList<String> requirements;
     public static ArrayAdapter arrayAdapter;
-    private Button addReqButton;
-    private long reqCount=0,readReq=0;
+    private Button mAddReqButton;
+    private long mReqCount =0, mReadReq =0;
     public AddRequirementFragment() {
         // Required empty public constructor
     }
@@ -43,8 +42,8 @@ public class AddRequirementFragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_add_requirement, container, false);
-        addReqListView = mView.findViewById(R.id.add_req_list_view);
-        addReqButton = mView.findViewById(R.id.add_req_button);
+        mAddReqListView = mView.findViewById(R.id.add_req_list_view);
+        mAddReqButton = mView.findViewById(R.id.add_req_button);
         return mView;
     }
 
@@ -57,16 +56,16 @@ public class AddRequirementFragment extends Fragment{
     }
 
     public void getFromDataBase(){
-        DatabaseReference dbr = FirebaseDatabase.getInstance().getReference().child("Requirements").child(FirebaseAuth.getInstance().getUid());
-        dbr.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Requirements").child(FirebaseAuth.getInstance().getUid());
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                reqCount = dataSnapshot.getChildrenCount();
+                mReqCount = dataSnapshot.getChildrenCount();
                 for(DataSnapshot db : dataSnapshot.getChildren()){
                     requirements.add(db.getValue().toString());
-                    readReq++;
+                    mReadReq++;
                 }
-                if(readReq == reqCount){
+                if(mReadReq == mReqCount){
                     enableList();
                 }
             }
@@ -79,10 +78,10 @@ public class AddRequirementFragment extends Fragment{
     }
 
     public void enableList(){
-        readReq = 0;
+        mReadReq = 0;
         arrayAdapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1,requirements);
-        addReqListView.setAdapter(arrayAdapter);
-        addReqListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mAddReqListView.setAdapter(arrayAdapter);
+        mAddReqListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(),RequirementsEditorActivity.class);
@@ -91,7 +90,7 @@ public class AddRequirementFragment extends Fragment{
 
             }
         });
-        addReqListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        mAddReqListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
@@ -104,8 +103,8 @@ public class AddRequirementFragment extends Fragment{
                             public void onClick(DialogInterface dialog, int which) {
                                 requirements.remove(position);
                                 arrayAdapter.notifyDataSetChanged();
-                                FirebaseDatabase.getInstance().getReference().child("Requirements").child(FirebaseAuth.getInstance().getUid()).setValue(requirements);
-
+                                FirebaseDatabase.getInstance().getReference().child("Requirements")
+                                        .child(FirebaseAuth.getInstance().getUid()).setValue(requirements);
                                 // save the whole list here
                                 // need updating
                             }
@@ -114,7 +113,7 @@ public class AddRequirementFragment extends Fragment{
                 return true;
             }
         });
-        addReqButton.setOnClickListener(new View.OnClickListener() {
+        mAddReqButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), RequirementsEditorActivity.class);

@@ -29,7 +29,7 @@ public class OrganisationSignUpActivity extends AppCompatActivity implements Vie
     private EditText mobileNumberEditText;
     private Spinner spinner;
     private EditText causeEditText;
-    private EditText addressEditText;
+    public static EditText addressEditText;
     private Intent intent;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     public static PhoneAuthProvider.ForceResendingToken token;

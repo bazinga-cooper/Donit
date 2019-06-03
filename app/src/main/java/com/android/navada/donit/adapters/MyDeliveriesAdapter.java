@@ -124,7 +124,7 @@ public class MyDeliveriesAdapter extends RecyclerView.Adapter<MyDeliveriesAdapte
         viewHolder.donorNameTextView.setText(mDeliveryDetails.getDonorName());
         viewHolder.donorContactNumberTextView.setText(mDeliveryDetails.getDonorContactNumber());
         viewHolder.sourceAddressTextView.setText(mDeliveryDetails.getSourceAddress());
-        viewHolder.destinationAddressTextView.setText(mDeliveryDetails.getDestinationAddess());
+        viewHolder.destinationAddressTextView.setText(mDeliveryDetails.getDestinationAddress());
         viewHolder.statusTextView.setText(deliveries.get(i).getStatus().toUpperCase());
 
         if(mDeliveryDetails.getDonationImageURL() != null)

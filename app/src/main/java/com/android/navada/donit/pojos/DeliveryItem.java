@@ -8,7 +8,7 @@ public class DeliveryItem {
     private String donorName;
     private String donorContactNumber;
     private String sourceAddress;
-    private String destinationAddess;
+    private String destinationAddress;
     private String donationImageURL;
     private String deliveryImageUrl;
     private String delivererId;
@@ -26,7 +26,7 @@ public class DeliveryItem {
         this.donorName = donorName;
         this.donorContactNumber = donorContactNumber;
         this.sourceAddress = sourceAddress;
-        this.destinationAddess = destinationAddess;
+        this.destinationAddress = destinationAddess;
         this.donationImageURL = donationImageURL;
         this.deliveryImageUrl = deliveryImageURL;
         this.delivererId = delivererId;
@@ -58,8 +58,8 @@ public class DeliveryItem {
         return sourceAddress;
     }
 
-    public String getDestinationAddess() {
-        return destinationAddess;
+    public String getDestinationAddress() {
+        return destinationAddress;
     }
 
     public String getDonationImageURL() {
@@ -98,25 +98,17 @@ public class DeliveryItem {
         this.donorName = donorName;
     }
 
-    public void setDonorContactNumber(String donorContactNumber) {
-        this.donorContactNumber = donorContactNumber;
-    }
+    public void setDonorContactNumber(String donorContactNumber) { this.donorContactNumber = donorContactNumber; }
 
     public void setSourceAddress(String sourceAddress) {
         this.sourceAddress = sourceAddress;
     }
 
-    public void setDestinationAddess(String destinationAddess) {
-        this.destinationAddess = destinationAddess;
-    }
+    public void setDestinationAddress(String destinationAddress) { this.destinationAddress = destinationAddress; }
 
-    public void setDonationImageURL(String donationImageURL) {
-        this.donationImageURL = donationImageURL;
-    }
+    public void setDonationImageURL(String donationImageURL) { this.donationImageURL = donationImageURL; }
 
-    public void setDeliveryImageURL(String deliveryImageURL) {
-        this.deliveryImageUrl = deliveryImageURL;
-    }
+    public void setDeliveryImageURL(String deliveryImageURL) { this.deliveryImageUrl = deliveryImageURL; }
 
     public void setDelivererId(String delivererId) {
         this.delivererId = delivererId;

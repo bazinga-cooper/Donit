@@ -32,10 +32,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class DonationLocationActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener {
+public class DonationLocationActivity extends AppCompatActivity implements OnMapReadyCallback,
+        GoogleMap.OnMapLongClickListener {
 
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
-    private static final String COARSE_LOACTION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private Boolean mLocationPermissionGranted = false;
     private static final int LOCATION_PERMISSION_REQUEST = 1234;
     private GoogleMap mMap;
@@ -43,7 +44,7 @@ public class DonationLocationActivity extends AppCompatActivity implements OnMap
     private static final float DEFAULT_ZOOM = 20;
     private boolean mMarkerAdded = false;
     private Button mLocationSubmitButton;
-    private String state,city,donorAddress,pinCode;
+    private String mState, mCity, mDonorAddress, mPinCode;
     private LatLng mChoosenLatLng;
 
 
@@ -54,8 +55,6 @@ public class DonationLocationActivity extends AppCompatActivity implements OnMap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_donation_location);
-
-        getLocationPermission();
         mLocationSubmitButton = findViewById(R.id.submitLocationBotton);
     }
 
@@ -68,6 +67,7 @@ public class DonationLocationActivity extends AppCompatActivity implements OnMap
              onSubmitLocation();
             }
         });
+        getLocationPermission();
     }
 
     private void getLocationPermission() {
@@ -76,12 +76,15 @@ public class DonationLocationActivity extends AppCompatActivity implements OnMap
         if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
                 FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
-                    COARSE_LOACTION) == PackageManager.PERMISSION_GRANTED) {
+                    COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 mLocationPermissionGranted = true;
                 initMap();
             } else {
                 ActivityCompat.requestPermissions(this, permissions, LOCATION_PERMISSION_REQUEST);
             }
+        }
+        else {
+            ActivityCompat.requestPermissions(this, permissions, LOCATION_PERMISSION_REQUEST);
         }
     }
 
@@ -97,7 +100,8 @@ public class DonationLocationActivity extends AppCompatActivity implements OnMap
         if (mLocationPermissionGranted) {
             getDeviceLocation();
             if (ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
             mMap.setMyLocationEnabled(true);
@@ -117,24 +121,24 @@ public class DonationLocationActivity extends AppCompatActivity implements OnMap
         try {
             List<Address> mListAddress = mgeocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
             if(mListAddress != null && mListAddress.size() > 0){
-                donorAddress = "";
-                city = "";
-                state = "";
-                pinCode = "";
+                mDonorAddress = "";
+                mCity = "";
+                mState = "";
+                mPinCode = "";
                 if(mListAddress.get(0).getThoroughfare() != null){
-                    donorAddress += mListAddress.get(0).getThoroughfare().toString() + " ";
+                    mDonorAddress += mListAddress.get(0).getThoroughfare().toString() + " ";
                 }
                 if(mListAddress.get(0).getSubAdminArea() != null){
-                    donorAddress += mListAddress.get(0).getSubAdminArea().toString() + " ";
+                    mDonorAddress += mListAddress.get(0).getSubAdminArea().toString() + " ";
                 }
                 if(mListAddress.get(0).getLocality() != null){
-                    city += mListAddress.get(0).getLocality().toString();
+                    mCity += mListAddress.get(0).getLocality().toString();
                 }
                 if(mListAddress.get(0).getAdminArea() != null) {
-                    state += mListAddress.get(0).getAdminArea().toString();
+                    mState += mListAddress.get(0).getAdminArea().toString();
                 }
                 if(mListAddress.get(0).getPostalCode() != null){
-                    pinCode += mListAddress.get(0).getPostalCode().toString();
+                    mPinCode += mListAddress.get(0).getPostalCode().toString();
                 }
             }
         } catch (IOException e) {
@@ -145,10 +149,10 @@ public class DonationLocationActivity extends AppCompatActivity implements OnMap
 
     public void onSubmitLocation(){
         if(mMarkerAdded){
-            DonateFragment.addressText = donorAddress;
-            DonateFragment.city = city;
-            DonateFragment.pinCode = pinCode;
-            DonateFragment.state = state;
+            DonateFragment.addressText = mDonorAddress;
+            DonateFragment.city = mCity;
+            DonateFragment.pinCode = mPinCode;
+            DonateFragment.state = mState;
             DonateFragment.latitude = mChoosenLatLng.latitude;
             DonateFragment.longitude = mChoosenLatLng.longitude;
             onBackPressed();
@@ -171,9 +175,10 @@ public class DonationLocationActivity extends AppCompatActivity implements OnMap
                 location.addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {
-                        if (task.isSuccessful()) {
+                        if (task.isSuccessful() && task.getResult()!=null) {
                             Location currentLocation = (Location) task.getResult();
-                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
+                            moveCamera(new LatLng(currentLocation.getLatitude(),
+                                    currentLocation.getLongitude()), DEFAULT_ZOOM);
                         } else {
                             makeToast("unable to get current Location");
                         }

@@ -15,7 +15,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,6 @@ import android.widget.Toast;
 
 import com.android.navada.donit.R;
 import com.android.navada.donit.activities.MainActivity;
-import com.android.navada.donit.adapters.DonationsAdapter;
 import com.android.navada.donit.pojos.DeliveryItem;
 import com.android.navada.donit.pojos.DonationItem;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -63,32 +61,32 @@ import java.util.Set;
  * A simple {@link Fragment} subclass.
  */
 public class FeedFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
-    private DatabaseReference donorSpotDatabaseReference;
-    private ChildEventListener donorSpotChildEventListener;
-    private View view;
-    private ArrayList<DonationItem> donationItems;
-    private ArrayList<String> donationIds;
-    long donationCount=0,readDonationCount=0;
-    boolean doneReadingDonations;
-    private ProgressBar progressBar;
+    private DatabaseReference mDonorSpotDatabaseReference;
+    private ChildEventListener mDonorSpotChildEventListener;
+    private View mView;
+    private ArrayList<DonationItem> mDonationItems;
+    private ArrayList<String> mDonationIds;
+    private long mDonationCount = 0, mReadDonationCount =0;
+    private boolean mDoneReadingDonations;
+    private ProgressBar mProgressBar;
     private AlertDialog mAlertDialog;
     private AlertDialog.Builder mBuilder;
     private ChildEventListener mChildEventListener;
     private ProgressDialog mProgressDialog;
-    private HashMap<String,String> orgs;
+    private HashMap<String,String> mOrgs;
     private GoogleMap mMap;
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
-    private static final String COARSE_LOACTION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private Boolean mLocationPermissionGranted = false;
     private static final int LOCATION_PERMISSION_REQUEST = 1234;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private static final float DEFAULT_ZOOM = 15;
-    private boolean onMapReadyOk = false;
-    private boolean onMarkerAddOk = true;
+    private boolean mOnMapReadyOk = false;
+    private boolean mOnMarkerAddOk = true;
     public String mSelectedImageUrl;
     public static Double donationLat,donationLng,orgLat,orgLng;
     private DatabaseReference mDatabaseReference;
-    private boolean loadCollectAndDeliver;
+    private boolean mLoadCollectAndDeliver;
 
 
 
@@ -100,8 +98,8 @@ public class FeedFragment extends Fragment implements OnMapReadyCallback, Google
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Deliveries");
-        donorSpotDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Donations");
-        donorSpotChildEventListener = new ChildEventListener() {
+        mDonorSpotDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Donations");
+        mDonorSpotChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 ObjectMapper objectMapper = new ObjectMapper();
@@ -109,26 +107,22 @@ public class FeedFragment extends Fragment implements OnMapReadyCallback, Google
                 DonationItem donationItem = objectMapper.convertValue(data, DonationItem.class);
 
                 if(donationItem.getStatus().equals("Pending")){
-                    orgs = (HashMap<String, String>) MainActivity.user.get("orgs");
-                    Set set = orgs.entrySet();
+                    mOrgs = (HashMap<String, String>) MainActivity.user.get("orgs");
+                    Set set = mOrgs.entrySet();
                     Iterator iterator = set.iterator();
                     while(iterator.hasNext()){
                         Map.Entry mEntry = (Map.Entry) iterator.next();
                         if(donationItem.getChosenOrganizationId().equals(mEntry.getKey())&&mEntry.getValue().toString().equals("true")){
-                            donationItems.add(donationItem);
-                            donationIds.add(dataSnapshot.getKey());
-                            Log.d("donationItem",donationItem.toString());
+                            mDonationItems.add(donationItem);
+                            mDonationIds.add(dataSnapshot.getKey());
                         }
                     }
                 }
+                    mReadDonationCount++;
 
-
-
-                    readDonationCount++;
-
-                if (readDonationCount == donationCount)
-                    doneReadingDonations = true;
-                if (doneReadingDonations)
+                if (mReadDonationCount == mDonationCount)
+                    mDoneReadingDonations = true;
+                if (mDoneReadingDonations)
                     enableUserInteraction();
 
 
@@ -160,37 +154,36 @@ public class FeedFragment extends Fragment implements OnMapReadyCallback, Google
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_feed, container, false);
-        progressBar = view.findViewById(R.id.progressBar);
+        mView =  inflater.inflate(R.layout.fragment_feed, container, false);
+        mProgressBar = mView.findViewById(R.id.progressBar);
 
-        return view;
+        return mView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        donationItems = new ArrayList<>();
-        donationIds = new ArrayList<>();
+        mDonationItems = new ArrayList<>();
+        mDonationIds = new ArrayList<>();
         mProgressDialog = new ProgressDialog(getContext());
         mProgressDialog.setCancelable(false);
-        progressBar.setVisibility(View.VISIBLE);
         getLocationPermission();
         getDeviceLocation();
         noPendingDeliveries();
-        if (!loadCollectAndDeliver) {
+        if (!mLoadCollectAndDeliver) {
 
-            donorSpotDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            mDonorSpotDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    donationCount = dataSnapshot.getChildrenCount();
+                    mDonationCount = dataSnapshot.getChildrenCount();
 
-                    if (donationCount != 0)
-                        donorSpotDatabaseReference.addChildEventListener(donorSpotChildEventListener);
+                    if (mDonationCount != 0)
+                        mDonorSpotDatabaseReference.addChildEventListener(mDonorSpotChildEventListener);
                     else
-                        doneReadingDonations = true;
+                        mDoneReadingDonations = true;
 
-                    if (doneReadingDonations)
+                    if (mDoneReadingDonations)
                         enableUserInteraction();
 
 
@@ -208,50 +201,47 @@ public class FeedFragment extends Fragment implements OnMapReadyCallback, Google
     @Override
     public void onPause() {
         super.onPause();
-        if(donorSpotChildEventListener!=null)
-            donorSpotDatabaseReference.removeEventListener(donorSpotChildEventListener);
+        if(mDonorSpotChildEventListener !=null)
+            mDonorSpotDatabaseReference.removeEventListener(mDonorSpotChildEventListener);
     }
     public void enableUserInteraction(){
-        progressBar.setVisibility(View.INVISIBLE);
         addMarker();
     }
 
     @Override
     public boolean onMarkerClick(final Marker marker) {
-        String[] s = marker.getTag().toString().split(" ");
-        final int pos = Integer.parseInt(s[0]);
+        String[] marketTag = marker.getTag().toString().split(" ");
+        final int position = Integer.parseInt(marketTag[0]);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
-        final String addressOfMarker = donationItems.get(pos).getAddress(),Donationinfo = donationItems.get(pos).getDescription();
-        final String name = donationItems.get(pos).getDonorName();
+        final String addressOfMarker = mDonationItems.get(position).getAddress(),Donationinfo = mDonationItems.get(position).getDescription();
+        final String name = mDonationItems.get(position).getDonorName();
         donationLat = marker.getPosition().latitude;
         donationLng = marker.getPosition().longitude;
-        orgLat = Double.parseDouble(donationItems.get(pos).getOrgLat());
-        orgLng = Double.parseDouble(donationItems.get(pos).getOrgLng());
-        final String imageUrl = donationItems.get(pos).getDonationImageUrl();
-        final String contactNumber = donationItems.get(pos).getDonorContactNumber();
-        String type = donationItems.get(pos).getCategory();
+        orgLat = mDonationItems.get(position).getOrgLat();
+        orgLng = mDonationItems.get(position).getOrgLng();
+        final String imageUrl = mDonationItems.get(position).getDonationImageUrl();
+        final String contactNumber = mDonationItems.get(position).getDonorContactNumber();
+        String type = mDonationItems.get(position).getCategory();
         ImageView imageView = new ImageView(getContext());
         Picasso.get().load(imageUrl).resize(150,150).into(imageView);
-        progressBar.setVisibility(View.GONE);
         alertDialogBuilder.setMessage("Address of Donor : \n"+addressOfMarker+"\n"+"Doantion Type:\n"+type+"\nDonation Info: \n"+Donationinfo+"\nContact Number:\n"+contactNumber);
         alertDialogBuilder.setPositiveButton("Confirm PickUp", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Long timeStamp = System.currentTimeMillis()/1000;
-
-                DeliveryItem deliveryItem = new DeliveryItem("pending",timeStamp.toString(),donationIds.get(pos),name,contactNumber,addressOfMarker,donationItems.get(pos).getDeliveryAddress(),imageUrl,null, FirebaseAuth.getInstance().getUid(),MainActivity.user.get("name").toString(),donationItems.get(pos).getChosenOrganizationId());
+                DeliveryItem deliveryItem = new DeliveryItem("pending",timeStamp.toString(), mDonationIds.get(position),name,contactNumber,addressOfMarker, mDonationItems.get(position).getDeliveryAddress(),imageUrl,null, FirebaseAuth.getInstance().getUid(),MainActivity.user.get("name").toString(), mDonationItems.get(position).getChosenOrganizationId());
                 deliveryItem.setDonorLat(marker.getPosition().latitude+"");
                 deliveryItem.setDonorLng(marker.getPosition().longitude+"");
-                deliveryItem.setOrgLat(donationItems.get(pos).getOrgLat());
-                deliveryItem.setOrgLng(donationItems.get(pos).getOrgLng());
-                Double l = Double.parseDouble(donationItems.get(pos).getOrgLat());
-                Double l1 = Double.parseDouble(donationItems.get(pos).getOrgLng());
-                String destinationAddress = getAddress(l,l1);
-                deliveryItem.setDestinationAddess(destinationAddress);
+                deliveryItem.setOrgLat(mDonationItems.get(position).getOrgLat()+"");
+                deliveryItem.setOrgLng(mDonationItems.get(position).getOrgLng()+"");
+                Double orgLat = mDonationItems.get(position).getOrgLat();
+                Double orgLng = mDonationItems.get(position).getOrgLng();
+                String destinationAddress = getAddress(orgLat,orgLng);
+                deliveryItem.setDestinationAddress(destinationAddress);
                 mDatabaseReference.push().setValue(deliveryItem);
-                donationItems.get(pos).setDelivereName(MainActivity.user.get("name").toString());
-                donationItems.get(pos).setStatus("picked");
-                donorSpotDatabaseReference.child(donationIds.get(pos)).setValue(donationItems.get(pos));
+                mDonationItems.get(position).setDelivereName(MainActivity.user.get("name").toString());
+                mDonationItems.get(position).setStatus("picked");
+                mDonorSpotDatabaseReference.child(mDonationIds.get(position)).setValue(mDonationItems.get(position));
                 loadCollectAndDeliver();
             }
         }).setView(imageView);
@@ -274,18 +264,20 @@ public class FeedFragment extends Fragment implements OnMapReadyCallback, Google
         if (ContextCompat.checkSelfPermission(getActivity(),
                 FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             if (ContextCompat.checkSelfPermission(getActivity(),
-                    COARSE_LOACTION) == PackageManager.PERMISSION_GRANTED) {
+                    COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                 mLocationPermissionGranted = true;
                 initMap();
             } else {
                 ActivityCompat.requestPermissions(getActivity(), permissions, LOCATION_PERMISSION_REQUEST);
             }
+        }else {
+            ActivityCompat.requestPermissions(getActivity(), permissions, LOCATION_PERMISSION_REQUEST);
         }
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        onMapReadyOk = true;
+        mOnMapReadyOk = true;
         if (mLocationPermissionGranted) {
             getDeviceLocation();
             if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
@@ -311,7 +303,7 @@ public class FeedFragment extends Fragment implements OnMapReadyCallback, Google
                 location.addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {
-                        if (task.isSuccessful()) {
+                        if (task.isSuccessful() && task.getResult()!=null) {
                             Location currentLocation = (Location) task.getResult();
                             moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM);
                         } else {
@@ -344,17 +336,14 @@ public class FeedFragment extends Fragment implements OnMapReadyCallback, Google
     }
 
     public void addMarker(){
-
-                    for(int i=0;i<donationItems.size();i++){
-                        HashMap<String,Object> address = donationItems.get(i).getDonorAddress();
-                        Marker mMarker =  mMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(address.get("latitude").toString()),Double.parseDouble(address.get("longitude").toString()))));
-                        mMarker.setTag(i+" "+donationIds.get(i));
-                    }
-
+        for(int i = 0; i< mDonationItems.size(); i++){
+            HashMap<String,Object> address = mDonationItems.get(i).getDonorAddress();
+            Marker mMarker =  mMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(address.get("latitude").toString()),Double.parseDouble(address.get("longitude").toString()))));
+            mMarker.setTag(i+" "+ mDonationIds.get(i));
+        }
     }
 
     public void loadCollectAndDeliver(){
-        progressBar.setVisibility(View.INVISIBLE);
             getFragmentManager().beginTransaction().replace(R.id.frame_container,new CollectAndDeliverFragment(),null).commit();
 
     }
@@ -369,7 +358,7 @@ public class FeedFragment extends Fragment implements OnMapReadyCallback, Google
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if(dataSnapshot.getChildrenCount()!=0) {
-                 loadCollectAndDeliver = true;
+                 mLoadCollectAndDeliver = true;
                     for(DataSnapshot db : dataSnapshot.getChildren()){
                         DeliveryItem di = db.getValue(DeliveryItem.class);
                         orgLat = Double.parseDouble(di.getOrgLat());
@@ -381,7 +370,7 @@ public class FeedFragment extends Fragment implements OnMapReadyCallback, Google
 
                     }
                 }else{
-                    loadCollectAndDeliver = false;
+                    mLoadCollectAndDeliver = false;
                 }
             }
 
@@ -393,11 +382,11 @@ public class FeedFragment extends Fragment implements OnMapReadyCallback, Google
 
 
     }
-    public String getAddress(Double l,Double l1){
+    public String getAddress(Double lat,Double lng){
         String address = "";
         Geocoder mgeocoder = new Geocoder(getContext(), Locale.getDefault());
         try {
-            List<Address> mListAddress = mgeocoder.getFromLocation(l,l1,1);
+            List<Address> mListAddress = mgeocoder.getFromLocation(lat,lng,1);
             if(mListAddress != null && mListAddress.size() > 0){
                 address = "";
                 if(mListAddress.get(0).getThoroughfare() != null){

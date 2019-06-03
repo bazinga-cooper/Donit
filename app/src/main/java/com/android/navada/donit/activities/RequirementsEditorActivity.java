@@ -13,24 +13,24 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RequirementsEditorActivity extends AppCompatActivity {
-    private EditText editText;
-    private Button submitButton;
-    private int position;
+    private EditText mEditText;
+    private Button mSubmitButton;
+    private int mPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_requirements_editor);
-        editText = findViewById(R.id.add_req_edit_text);
-        submitButton =findViewById(R.id.submit_button);
+        mEditText = findViewById(R.id.add_req_edit_text);
+        mSubmitButton =findViewById(R.id.submit_button);
         Intent intent = getIntent();
-        position = intent.getIntExtra("position",-1);
-        if(position!=-1){
-            editText.setText(AddRequirementFragment.requirements.get(position));
+        mPosition = intent.getIntExtra("position",-1);
+        if(mPosition !=-1){
+            mEditText.setText(AddRequirementFragment.requirements.get(mPosition));
         }
         else{
             AddRequirementFragment.requirements.add("");
-            position = AddRequirementFragment.requirements.size()-1;
+            mPosition = AddRequirementFragment.requirements.size()-1;
             AddRequirementFragment.arrayAdapter.notifyDataSetChanged();
         }
     }
@@ -38,7 +38,7 @@ public class RequirementsEditorActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        submitButton.setOnClickListener(new View.OnClickListener() {
+        mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addRequirement();
@@ -47,10 +47,11 @@ public class RequirementsEditorActivity extends AppCompatActivity {
     }
 
     private void addRequirement(){
-        AddRequirementFragment.requirements.set(position,editText.getText().toString());
+        AddRequirementFragment.requirements.set(mPosition, mEditText.getText().toString());
         AddRequirementFragment.arrayAdapter.notifyDataSetChanged();
-        FirebaseDatabase.getInstance().getReference().child("Requirements").child(FirebaseAuth.getInstance().getUid()).setValue(AddRequirementFragment.requirements);
-       onBackPressed();
+        FirebaseDatabase.getInstance().getReference().child("Requirements").child(FirebaseAuth.getInstance()
+                .getUid()).setValue(AddRequirementFragment.requirements);
+        onBackPressed();
         // save the whole list here
         // need updating
     }

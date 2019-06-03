@@ -63,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static HashMap<String, Object> user;
     private AlertDialog.Builder exitBuilder;
     public static boolean isRequirementActivity;
+    static {
+        user = new HashMap<>();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

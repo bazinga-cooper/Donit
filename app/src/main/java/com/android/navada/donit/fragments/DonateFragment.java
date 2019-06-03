@@ -42,23 +42,23 @@ import static android.app.Activity.RESULT_OK;
 
 public class DonateFragment extends Fragment implements AdapterView.OnItemSelectedListener {
 
-    private View view;
-    private ImageButton itemImageButton,locationButton;
-    private EditText itemNameEditText,itemDescriptionEditText,phoneNumberEditText;
-    private Spinner itemTypeSpinner;
-    private Button submitButton;
-    private String itemName,itemDescription,phoneNumber,itemType,imageUrl,name,id;
+    private View mView;
+    private ImageButton mItemImageButton, mLocationButton;
+    private EditText mItemNameEditText, mItemDescriptionEditText, mPhoneNumberEditText;
+    private Spinner mItemTypeSpinner;
+    private Button mSubmitButton;
+    private String mItemName, mItemDescription, mPhoneNumber, mItemType, mImageUrl,mName, mId;
     public static HashMap<String,Object> donorAddress;
     public static String state,addressText,city,pinCode;
     public static double latitude,longitude;
     private static final int PICK_IMAGE = 100;
-    private Uri imageUri;
-    private DatabaseReference databaseReference;
-    private FirebaseStorage fireBaseStorage;
-    private StorageReference photoStorageReference;
-    private StorageReference photoRef;
-    private ProgressDialog progressDialog;
-    private SharedPreferences sharedPreferences;
+    private Uri mImageUri;
+    private DatabaseReference mDatabaseReference;
+    private FirebaseStorage mFireBaseStorage;
+    private StorageReference mPhotoStorageReference;
+    private StorageReference mPhotoRef;
+    private ProgressDialog mProgressDialog;
+    private SharedPreferences mSharedPreferences;
 
     public DonateFragment() {
         // Required empty public constructor
@@ -67,9 +67,9 @@ public class DonateFragment extends Fragment implements AdapterView.OnItemSelect
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Donations");// make change in uid FirebaseAuth.getInstance().getUid()
-        fireBaseStorage = FirebaseStorage.getInstance();
-        photoStorageReference = fireBaseStorage.getReference().child("donation_photos");
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Donations");// make change in uid FirebaseAuth.getInstance().getUid()
+        mFireBaseStorage = FirebaseStorage.getInstance();
+        mPhotoStorageReference = mFireBaseStorage.getReference().child("donation_photos");
 
     }
 
@@ -77,44 +77,44 @@ public class DonateFragment extends Fragment implements AdapterView.OnItemSelect
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_donate, container, false);
-        itemImageButton = view.findViewById(R.id.donation_image_button);
-        locationButton = view.findViewById(R.id.location_button);
-        itemNameEditText = view.findViewById(R.id.item_name);
-        itemDescriptionEditText = view.findViewById(R.id.item_description);
-        phoneNumberEditText = view.findViewById(R.id.phone_number);
-        itemTypeSpinner = view.findViewById(R.id.item_type_spinner);
-        submitButton = view.findViewById(R.id.submit_button);
-        locationButton = view.findViewById(R.id.location_button);
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setCancelable(false);
-        sharedPreferences = getContext().getSharedPreferences("com.android.navada.donit", Context.MODE_PRIVATE);
+        mView =  inflater.inflate(R.layout.fragment_donate, container, false);
+        mItemImageButton = mView.findViewById(R.id.donation_image_button);
+        mLocationButton = mView.findViewById(R.id.location_button);
+        mItemNameEditText = mView.findViewById(R.id.item_name);
+        mItemDescriptionEditText = mView.findViewById(R.id.item_description);
+        mPhoneNumberEditText = mView.findViewById(R.id.phone_number);
+        mItemTypeSpinner = mView.findViewById(R.id.item_type_spinner);
+        mSubmitButton = mView.findViewById(R.id.submit_button);
+        mLocationButton = mView.findViewById(R.id.location_button);
+        mProgressDialog = new ProgressDialog(getContext());
+        mProgressDialog.setCancelable(false);
+        mSharedPreferences = getContext().getSharedPreferences("com.android.navada.donit", Context.MODE_PRIVATE);
 
-        return view;
+        return mView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        imageUrl = "";
-        itemType = "";
-        ArrayAdapter<CharSequence> aa = ArrayAdapter.createFromResource(getContext(), R.array.Donation_Item_Types,android.R.layout.simple_spinner_item);
-        aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        itemTypeSpinner.setAdapter(aa);
-        itemTypeSpinner.setOnItemSelectedListener(this);
-        itemImageButton.setOnClickListener(new View.OnClickListener() {
+        mImageUrl = "";
+        mItemType = "";
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.Donation_Item_Types,android.R.layout.simple_spinner_item);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mItemTypeSpinner.setAdapter(arrayAdapter);
+        mItemTypeSpinner.setOnItemSelectedListener(this);
+        mItemImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openGallery();
             }
         });
-        submitButton.setOnClickListener(new View.OnClickListener() {
+        mSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 uploadImage();
             }
         });
-        locationButton.setOnClickListener(new View.OnClickListener() {
+        mLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent  = new Intent(getContext(), DonationLocationActivity.class);
@@ -127,12 +127,12 @@ public class DonateFragment extends Fragment implements AdapterView.OnItemSelect
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        itemType = parent.getItemAtPosition(position).toString();
+        mItemType = parent.getItemAtPosition(position).toString();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        itemType = "";
+        mItemType = "";
     }
 
     private void openGallery(){
@@ -145,16 +145,16 @@ public class DonateFragment extends Fragment implements AdapterView.OnItemSelect
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
-            imageUri = data.getData();
-            itemImageButton.setImageURI(imageUri);
-            photoRef = photoStorageReference.child(imageUri.getLastPathSegment());
+            mImageUri = data.getData();
+            mItemImageButton.setImageURI(mImageUri);
+            mPhotoRef = mPhotoStorageReference.child(mImageUri.getLastPathSegment());
         }
     }
 
     public void addItem(){
-        itemName = itemNameEditText.getText().toString();
-        itemDescription = itemName + "\n" + itemDescriptionEditText.getText().toString();
-        phoneNumber = phoneNumberEditText.getText().toString();
+        mItemName = mItemNameEditText.getText().toString();
+        mItemDescription = mItemName + "\n" + mItemDescriptionEditText.getText().toString();
+        mPhoneNumber = mPhoneNumberEditText.getText().toString();
         donorAddress = new HashMap<>();
         donorAddress.put("longitude",longitude);
         donorAddress.put("latitude",latitude);
@@ -164,23 +164,28 @@ public class DonateFragment extends Fragment implements AdapterView.OnItemSelect
         donorAddress.put("address",addressText);
         if(isNotEmpty()){
             HashMap<String,Object> hm = MainActivity.user;
-            name = hm.get("name").toString();
-            id = "";
+            mName = hm.get("name").toString();
+            mId = "";
             Long timeStamp = System.currentTimeMillis()/1000;
-            DonationItem donationItem = new DonationItem(itemDescription,imageUrl,null,itemType,addressText,city,"Pending",timeStamp+"",name,FirebaseAuth.getInstance().getUid(),phoneNumber,null,null,null);
+            DonationItem donationItem =
+                    new DonationItem(mItemDescription, mImageUrl,null,
+                            mItemType,addressText,city,"Pending",timeStamp+"",
+                            mName,FirebaseAuth.getInstance().getUid(), mPhoneNumber,null,
+                            null,null);
             donationItem.setDonorAddress(donorAddress);
             donationItem.setChosenOrganizationId("none");
             donationItem.setDonorId(FirebaseAuth.getInstance().getUid());
-            databaseReference.push().setValue(donationItem);
-            itemNameEditText.setText("");
-            itemDescriptionEditText.setText("");
-            phoneNumberEditText.setText("");
-            itemImageButton.setImageResource(R.drawable.add_image_click);
+            mDatabaseReference.push().setValue(donationItem);
+            mItemNameEditText.setText("");
+            mItemDescriptionEditText.setText("");
+            mPhoneNumberEditText.setText("");
+            mItemImageButton.setImageResource(R.drawable.add_image_click);
         }
     }
 
     public boolean isNotEmpty(){
-        if(itemName.isEmpty() || itemDescription.isEmpty() || phoneNumber.isEmpty() || donorAddress.isEmpty() || imageUrl.isEmpty() || itemType.isEmpty()){
+        if(mItemName.isEmpty() || mItemDescription.isEmpty() || mPhoneNumber.isEmpty() ||
+                donorAddress.isEmpty() || mImageUrl.isEmpty() || mItemType.isEmpty()){
             makeToast("Fields Can't Be Empty !");
             return  false;
         }
@@ -188,35 +193,35 @@ public class DonateFragment extends Fragment implements AdapterView.OnItemSelect
     }
 
     private void uploadImage(){
-        progressDialog.setMessage("Uploading Image...");
-        progressDialog.show();
+        mProgressDialog.setMessage("Uploading Image...");
+        mProgressDialog.show();
 
-        UploadTask uploadTask = photoRef.putFile(imageUri);
+        UploadTask uploadTask = mPhotoRef.putFile(mImageUri);
         uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
             public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
                 if (!task.isSuccessful()) {
                     makeToast("unable to upload image");
-                    if(progressDialog.isShowing())
-                        progressDialog.cancel();
+                    if(mProgressDialog.isShowing())
+                        mProgressDialog.cancel();
                     throw task.getException();
                 }
 
-                return photoRef.getDownloadUrl();
+                return mPhotoRef.getDownloadUrl();
             }
         }).addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
             public void onComplete(@NonNull Task<Uri> task) {
                 if (task.isSuccessful()) {
                     Uri downloadUri = task.getResult();
-                    imageUrl = downloadUri.toString();
+                    mImageUrl = downloadUri.toString();
                     makeToast("Image Uploaded");
-                    if(progressDialog.isShowing())
-                        progressDialog.cancel();
+                    if(mProgressDialog.isShowing())
+                        mProgressDialog.cancel();
                     addItem();
                 } else {
-                    if(progressDialog.isShowing())
-                        progressDialog.cancel();
+                    if(mProgressDialog.isShowing())
+                        mProgressDialog.cancel();
                     makeToast("Image not uploaded");
                 }
             }

@@ -83,13 +83,15 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     if(!progressDialog.isShowing())
                         progressDialog.show();
 
-                    if(user.isEmailVerified())
-                        checkIfUserIsOrganization(firebaseAuth);
-                    else {
-                        FirebaseAuth.getInstance().signOut();
-                        progressDialog.cancel();
-                        makeToast("Please verify your email!");
-                    }
+                    checkIfUserIsOrganization(firebaseAuth,user);
+
+//                    if(user.isEmailVerified())
+//                        checkIfUserIsOrganization(firebaseAuth);
+//                    else {
+//                        FirebaseAuth.getInstance().signOut();
+//                        progressDialog.cancel();
+//                        makeToast("Please verify your email!");
+//                    }
 
                 }
 
@@ -98,22 +100,38 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    private void checkIfUserIsOrganization(final FirebaseAuth firebaseAuth){
+    private void checkIfUserIsOrganization(final FirebaseAuth firebaseAuth,final FirebaseUser firebaseUser){
 
         FirebaseDatabase.getInstance().getReference().child("Users").child(firebaseAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                progressDialog.cancel();
                 HashMap<String, Object> user = (HashMap<String, Object>) dataSnapshot.getValue();
-                if(!user.get("typeOfUser").equals("organization"))
+                if(user.get("typeOfUser").equals("donor")||user.get("typeOfUser").equals("superadmin"))
                     startMainActivity();
-                else if(user.get("approved").equals(false)){
-                    progressDialog.cancel();
-                    firebaseAuth.signOut();
-                    makeToast("Not approved by superadmin yet!");
+                else if(!user.get("typeOfUser").equals("organization") ){
+                    if(firebaseUser.isEmailVerified())
+                        startMainActivity();
+                    else{
+                        firebaseAuth.signOut();
+                        makeToast("Email not Verified");
+                    }
+
                 }
-                else
-                    startMainActivity();
+                else if(user.get("typeOfUser").equals("organization")) {
+                    if(!firebaseUser.isEmailVerified()){
+                        firebaseAuth.signOut();
+                        makeToast("Email not Verified");
+                    }
+                    else if (user.get("approved").equals(false)) {
+                        progressDialog.cancel();
+                        firebaseAuth.signOut();
+                        makeToast("Not approved by superadmin yet!");
+                    }else{
+                        startMainActivity();
+                    }
+                }
+
 
             }
 
@@ -204,5 +222,13 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                                                break;
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        moveTaskToBack(true);
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(1);
     }
 }

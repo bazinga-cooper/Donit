@@ -11,7 +11,7 @@ title __POJOS's Class Diagram__\n
           - donorName : String
           - donorContactNumber : String
           - sourceAddress : String
-          - destinationAddess : String
+          - destinationAddress : String
           - donationImageURL : String
           - deliveryImageURL : String
           - delivererId : String

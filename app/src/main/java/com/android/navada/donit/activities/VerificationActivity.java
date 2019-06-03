@@ -274,7 +274,7 @@ public class VerificationActivity extends AppCompatActivity {
 
                 mAuth.getCurrentUser().sendEmailVerification();
                 mAuth.signOut();
-                makeToast("Welcome to Annadata");
+                makeToast("Welcome to DonIT");
                 finish();
 
             }

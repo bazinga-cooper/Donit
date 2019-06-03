@@ -1,6 +1,7 @@
 package com.android.navada.donit.fragments;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.android.navada.donit.R;
+import com.android.navada.donit.activities.EnlargeImageActivity;
 import com.android.navada.donit.adapters.MyDonationsAdapter;
 import com.android.navada.donit.pojos.DonationItem;
 import com.google.firebase.auth.FirebaseAuth;
@@ -232,9 +234,9 @@ public class MyDonationsFragment extends Fragment {
 
             @Override
             public void onClickImage(ImageView view, int position) {
-
-                //Add code to enlarge the image
-
+                Intent intent = new Intent(getContext(), EnlargeImageActivity.class);
+                intent.putExtra("ImageUrl",donations.get(position).getDonationImageUrl());
+                startActivity(intent);
             }
 
         });
