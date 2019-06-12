@@ -224,7 +224,9 @@ public class FeedFragment extends Fragment implements OnMapReadyCallback, Google
         String type = mDonationItems.get(position).getCategory();
         ImageView imageView = new ImageView(getContext());
         Picasso.get().load(imageUrl).resize(150,150).into(imageView);
-        alertDialogBuilder.setMessage("Address of Donor : \n"+addressOfMarker+"\n"+"Doantion Type:\n"+type+"\nDonation Info: \n"+Donationinfo+"\nContact Number:\n"+contactNumber);
+        alertDialogBuilder.setMessage("Donation Details :- "+"\n"+"Address of Donor : \n"+addressOfMarker
+                +"\n"+"Doantion Type:\n"+type+"\nDonation Info: \n"+Donationinfo
+                +"\nContact Number:\n"+contactNumber);
         alertDialogBuilder.setPositiveButton("Confirm PickUp", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -253,7 +255,6 @@ public class FeedFragment extends Fragment implements OnMapReadyCallback, Google
 
 
     private void initMap() {
-        Toast.makeText(getContext(), "Map is ready", Toast.LENGTH_SHORT).show();
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.feedMap);
         mapFragment.getMapAsync(this);

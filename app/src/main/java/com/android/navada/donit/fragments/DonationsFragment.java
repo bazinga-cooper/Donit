@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.navada.donit.R;
 import com.android.navada.donit.activities.MainActivity;
@@ -188,6 +189,7 @@ public class DonationsFragment extends Fragment {
                 mDonationItems.remove(donationItem);
                 mAdapter.notifyItemRemoved(position);
                 mRecyclerView.swapAdapter(mAdapter,true);
+                Toast.makeText(getContext(), "You have chosen the Donation", Toast.LENGTH_SHORT).show();
             }
         });
 

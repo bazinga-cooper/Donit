@@ -208,7 +208,7 @@ public class MyDonationsFragment extends Fragment {
             @Override
             public void onClick(final int position) {
 
-                if(donations.get(position).getStatus().equals("Pending")){
+                if(donations.get(position).getStatus().equals("Pending")&& donations.get(position).getChosenOrganizationId().equals("none")){
 
                     mAlertDialog = mBuilder.setMessage("Do you want to cancel the donation?").
                             setTitle("Cancel Donation").

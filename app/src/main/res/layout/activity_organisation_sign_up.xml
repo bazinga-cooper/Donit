@@ -183,7 +183,6 @@
             android:background="@drawable/edit_text_border"
             android:hint="@string/locate"
             android:inputType="textMultiLine"
-            android:maxLength="10"
             android:padding="5dp" />
 
         <Button

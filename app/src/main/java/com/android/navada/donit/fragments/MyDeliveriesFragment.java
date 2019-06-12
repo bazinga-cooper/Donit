@@ -267,9 +267,9 @@ public class MyDeliveriesFragment extends Fragment {
                             .setNegativeButton("CANCEL DELIVERY", new DialogInterface.OnClickListener() {
 
                                 public void onClick(DialogInterface dialog, int which) {
-
+                                    DeliveryItem mDeliveryDetails = deliveries.get(position);
                                     FirebaseDatabase.getInstance().getReference().child("Deliveries").child(deliveryIds.get(position)).removeValue();
-                                    FirebaseDatabase.getInstance().getReference().child("Donations").child(deliveries.get(position).getDonationId()).child("status").setValue("Pending");
+                                    FirebaseDatabase.getInstance().getReference().child("Donations").child(mDeliveryDetails.getDonationId()).child("status").setValue("Pending");
                                     deliveries.remove(position);
                                     deliveryIds.remove(position);
                                     mImageView = null;

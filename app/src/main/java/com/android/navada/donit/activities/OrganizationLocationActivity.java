@@ -147,7 +147,7 @@ public class OrganizationLocationActivity extends AppCompatActivity implements O
 
     public void onSubmitLocation(){
         if(mMarkerAdded){
-            OrganisationSignUpActivity.addressEditText.setText(mCity);
+            OrganisationSignUpActivity.addressEditText.setText(mAddress+"\n"+mCity);
             OrganisationSignUpActivity.city = mCity;
             OrganisationSignUpActivity.address = mAddress;
             OrganisationSignUpActivity.latitude = mChoosenLatLng.latitude;
